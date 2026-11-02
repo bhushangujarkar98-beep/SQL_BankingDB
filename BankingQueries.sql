@@ -154,4 +154,11 @@ constraint_type
 from information_schema.table_constraints
 where table_schema = 'bankingdb'
 and table_name = 'KYC';
-
+select * from customers;
+  insert into customers
+  values(101,'Amit','Sharma''','amit@gmail.com','9876543210','2024-01-15','1998-05-10');
+  select * from customers;
+  insert into customers(CustomerID,firstname,lastname,email,phone,AccountCreationDate,DateOfBirth)
+  values(102,'Priya','Patil','priya@gmail.com','9876543211','2024-02-10','1999-08-22');
+  
+  select * from customers
