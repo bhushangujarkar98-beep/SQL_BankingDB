@@ -159,6 +159,173 @@ select * from customers;
   values(101,'Amit','Sharma''','amit@gmail.com','9876543210','2024-01-15','1998-05-10');
   select * from customers;
   insert into customers(CustomerID,firstname,lastname,email,phone,AccountCreationDate,DateOfBirth)
-  values(102,'Priya','Patil','priya@gmail.com','9876543211','2024-02-10','1999-08-22');
+  values(102,'Priya','Patil','priya@gmail.com','9876543212','2024-02-10','1999-08-22');
   
-  select * from customers
+  select * from customers;
+  
+  
+  insert into customers
+  (phone,email,lastname,firstname,accountcreationdate,dateofbirth,customerid)
+  values ('9876543211' , 'rahul@gmail.com' , 'verma' , 'rahul' , '2024-03-12' , '1997-11-14' , 103);  
+  
+insert into customers
+values 
+(104,'Sneha','Joshi','sneha@gmail.com','9876543213','2024-04-18','2000-01-05'),
+(105,'Karan','Mehta','karan@gmail.com','9876543214','2024-05-25','1996-12-30');
+
+INSERT INTO Branches
+VALUES
+(1,'Nagpur Branch','Sitabuldi, Nagpur','0712-123456'),
+(2,'Pune Branch','Shivaji Nagar, Pune','020-223344'),
+(3,'Mumbai Branch','Andheri, Mumbai','022-334455');
+select * from branches;
+
+INSERT INTO Accounts
+VALUES
+(1001,'Savings',25000,101,1),
+(1002,'Current',45000,102,2),
+(1003,'Savings',18000,103,1),
+(1004,'Current',72000,104,3),
+(1005,'Savings',15000,105,2);
+select* from accounts;
+
+INSERT INTO Transaction
+VALUES
+(1,'2025-01-10',5000,'Deposit',1001),
+(2,'2025-01-12',2000,'Withdrawal',1001),
+(3,'2025-01-13',7000,'Deposit',1002),
+(4,'2025-01-15',3000,'Withdrawal',1003),
+(5,'2025-01-16',10000,'Deposit',1004);
+select * from transaction;
+
+INSERT INTO Loans
+VALUES
+(501,500000,8.5,'2024-01-01','2029-01-01',101),
+(502,250000,9.0,'2024-03-15','2028-03-15',103),
+(503,700000,7.8,'2024-06-20','2031-06-20',104);
+select* from loans;
+
+update customers
+set email = 'amit2026@yahoo.com'
+where customerid = 101;
+select * from customers;
+
+
+update customers 
+set Phone = '9876543212'
+where customerid = 103;
+ select * from branches;
+ 
+ update branches
+ set branchaddress = 'Cvil Lines, Nagpur',
+ branchphone = '0712562692'
+ where branchid = 1;
+ 
+ insert into kyc
+ values (701, '672635738265', 'HDSHD8686H', 101),
+ (702, '737673766273', 'HFHJH8756J', 102),
+ (703, '73579852437', 'HSKGD9784K', 103);
+ 
+ delete from kyc where kycid = 702;
+ select * from kyc;
+ 
+ delete from kyc;
+ 
+ select * from customers;
+ select firstname, email, phone from customers;
+ 
+-- get all data for all customers
+
+ select customerid,balance from accounts
+ where balance > 40000;
+ 
+ select accountid, accounttype, balance from accounts
+ where accounttype = 'savings';
+ 
+ select customerid from customers
+ where customerid =104;
+ 
+ -- find all customers whose account type is saving and balance is greater than 20000-- 
+ SELECT 
+    *
+FROM
+    accounts
+WHERE
+    accounttype = 'savings'
+        AND balance > 20000;
+ 
+ SELECT 
+    *
+FROM
+    accounts
+WHERE
+    accounttype = 'savings'
+        AND balance > 20000;
+ 
+ SELECT 
+    *
+FROM
+    accounts
+WHERE
+    accounttype = 'savings'
+        AND balance > 20000;
+ 
+ SELECT 
+    *
+FROM
+    accounts
+WHERE
+    accounttype = 'current'
+        or balance > 20000; 
+        -- find all accounts  where account type is not savings 
+select * from accounts
+where not accounttype = 'savings';
+
+select *  from accounts
+where accounttype != 'savings';
+
+select *  from accounts
+where accounttype <> 'savings';
+
+select * from loans;
+select * from loans 
+where interestrate = 8.5 or interestrate =9.0;
+
+select * from loans 
+where interestrate in (8.5,9.0);
+
+-- find all customers having balance between 20k to 60k
+select * from accounts
+where balance between 20000 and 60000;
+
+-- find all customers having balance between 20k to 60k
+-- and account type should be current
+select * from accounts
+where balance between 20000 and 60000 and accounttype = 'current';
+
+select * from customers;
+
+-- Like operator
+
+select * from customers
+where lastname LIKE 'J%';
+
+select * from customers
+where firstname LIKE '%ya';
+
+select * from customers
+where firstname LIKE 'P____';
+
+-- that is not single line that is underscores
+select * from customers
+where firstname LIKE 'A___';
+
+select * from accounts;
+
+-- sort accounts tble as per balance in descending order
+
+select * from accounts
+order by balance desc;
+
+select * from accounts
+order by accounttype desc,balance desc;
