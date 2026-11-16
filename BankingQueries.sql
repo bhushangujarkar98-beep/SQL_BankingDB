@@ -458,7 +458,7 @@ else "Low Value Loan"
 end as LoanCategory
 from loans;
 
-select * from transactions
+select * from transaction
 when transactiontype = "deposit" and amount >= 5000 then "medium amount"
 when transactiontype = "deposit" and amount >= 0 then "low amount"
 else "not applicable" end as "depositCategory"
@@ -538,3 +538,84 @@ select round(3.5);
    -- sqrt()
    select sqrt(123);
    select sqrt(144);
+   
+   -- DATE FUNCTION
+select * from customers;
+select now();
+select current_date();
+select curdate();
+select current_time();
+select curtime();
+
+
+select firstname,dateofbirth,year(dateofbirth),month(dateofbirth),day(dateofbirth) from customers
+ where customerid=104;
+ 
+ 
+ select customerid,firstname,dateofbirth,year(curdate())-year(dateofbirth) as Age,month(dateofbirth),day(dateofbirth) from customers;
+ 
+ select firstname,dateofbirth, 
+ datediff(curdate(),dateofbirth)as Age
+ from customers;
+ 
+ 
+  select firstname,dateofbirth, 
+  round(datediff(curdate(),dateofbirth)/365,1) as Age 
+  from customers;
+  
+  
+  select firstname,dateofbirth,
+  concat(firstname," Age is ",round(datediff(curdate(),dateofbirth)/365,1)) as Age
+  from customers;
+  
+  
+  select concat(firstname," ",lastname) as fullname,accountcreationdate,
+  date_add(accountcreationdate, interval 5 year) as KYCrenewal
+  from customers;
+  
+  
+  select date_sub(curdate(),interval 7 day);
+  
+  
+  -- AGGREGATE FUNCTIONS
+  -- Calculate the total balance maintained accross all customer accounts
+  select sum(balance) as totalbalance from accounts;
+  
+  
+   -- Calculate the average balance maintained accross all customer accounts
+     select avg(balance) as averagebalance from accounts;
+     
+     
+  -- Identify the highest balance maintained in any customer account    
+   select max(balance) as highestbalance from accounts; 
+
+
+ -- Identify the lowest balance maintained in any customer account    
+   select min(balance) as lowestbalance from accounts; 
+   
+   
+   -- Determine total number of customer account available in the system
+   select count(*) as NoOfAccounts from accounts;
+   select count(accountid) as NoOfAccounts from accounts;
+   
+   
+   -- GROUP BY
+   select * from accounts;
+   select accounttype, count(*) as NoOfAccount
+   from accounts 
+   group by accounttype;
+
+
+select accounttype, sum(balance) as NoOfAccount
+   from accounts 
+   group by accounttype;
+   
+   alter table transaction
+   change column account amount decimal(10,2);
+   
+    -- Find total amount by transaction type
+   select * from transaction;
+   select * from transaction;
+   select transactiontype,sum(amount) as TotalAmount
+   from transaction
+   group by transactiontype;
